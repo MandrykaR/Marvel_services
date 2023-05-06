@@ -3,8 +3,6 @@ import AppBanner from "../appBanner/AppBanner";
 
 
 const ComicsPages = () => {
-
-
     return(
         <>
             <AppBanner/>
