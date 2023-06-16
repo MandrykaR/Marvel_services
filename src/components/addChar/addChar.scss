@@ -1,0 +1,47 @@
+*{
+    box-sizing: border-box;
+}
+
+
+.page{
+    max-width: 100%;
+    display: flex;
+    margin:0 0 50px 0 ;
+    justify-content: center
+}
+
+.login-form{
+    
+    background-color: aqua;
+    font-size: 16px;
+    font-family: monospace;
+    width: 100%;
+    padding: 16px;
+    box-shadow: 0px 4px 8px 0px rgba(0, 0, 0, 0.2);
+    
+}
+
+
+.form-title{
+    text-transform: uppercase;
+    text-align: center;
+}
+
+.form-control{
+    margin-bottom: 8px;
+}
+
+.form-label{
+    display: block;
+    margin-bottom: 4px;
+}
+
+.form-input{
+    height: 32px;
+    width: 100%;
+}
+
+
+.add-button{
+    margin-right: 10px;
+}

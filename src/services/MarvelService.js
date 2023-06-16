@@ -9,10 +9,33 @@ const useMarvelService = () => {
 
 	const getAllCharacters = async (offset = _baseOffset) => {
 		const res = await request(
-			`${_apiBase}characters?limit=9&offset=${offset}&${_apiKey}`
+			`http://localhost:8080/characters`
+			
 		);
-		return res.data.results.map(_transformCharacter);
+
+		return res;
+		
 	};
+
+	const addNewCharacter = async (name, description, image) => {
+		console.log({
+			"name": name,
+			"description": description,
+			"thumbnail": image
+		  });
+		const res = await request(
+			`http://localhost:8080/characters`, "POST", 
+			{
+				"name": name,
+				"description": description,
+				"thumbnail": image
+			  }
+
+		);
+
+		console.log(res);
+		return res;
+	}
 
 	const getCharacter = async (id) => {
 		const res = await request(`${_apiBase}characters/${id}?${_apiKey}`);
@@ -41,7 +64,6 @@ const useMarvelService = () => {
 			thumbnail: char.thumbnail.path + "." + char.thumbnail.extension,
 			homepage: char.urls[0].url,
 			wiki: char.urls[1].url,
-			comics: char.comics.items,
 		};
 	};
 
@@ -69,7 +91,8 @@ const useMarvelService = () => {
 		getAllCharacters,
 		getCharacter,
 		getAllComics,
-		getComic
+		getComic,
+		addNewCharacter
 	};
 };
 
