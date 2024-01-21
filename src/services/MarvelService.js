@@ -9,7 +9,7 @@ const useMarvelService = () => {
 
 	const getAllCharacters = async (offset = _baseOffset) => {
 		const res = await request(
-			`http://localhost:8080/characters`
+			`http://localhost:5175/chars`
 			
 		);
 
@@ -21,14 +21,14 @@ const useMarvelService = () => {
 		console.log({
 			"name": name,
 			"description": description,
-			"thumbnail": image
+			"img": image
 		  });
 		const res = await request(
-			`http://localhost:8080/characters`, "POST", 
+			`http://localhost:5175/chars`, "POST",
 			{
 				"name": name,
 				"description": description,
-				"thumbnail": image
+				"img": image
 			  }
 
 		);
@@ -38,8 +38,8 @@ const useMarvelService = () => {
 	}
 
 	const getCharacter = async (id) => {
-		const res = await request(`${_apiBase}characters/${id}?${_apiKey}`);
-		return _transformCharacter(res.data.results[0]);
+		const res = await request(`http://localhost:5175/chars/${id}`);
+		return res;
 	};
 
 
@@ -61,7 +61,7 @@ const useMarvelService = () => {
 			description: char.description
 				? `${char.description.slice(0, 210)}...`
 				: "There is no description for this character",
-			thumbnail: char.thumbnail.path + "." + char.thumbnail.extension,
+			thubnail: char.thubnail.path + "." + char.thubnail.extension,
 			homepage: char.urls[0].url,
 			wiki: char.urls[1].url,
 		};
@@ -76,7 +76,7 @@ const useMarvelService = () => {
 			pageCount: comics.pageCount
 				? `${comics.pageCount} p.`
 				: "No information about the number of pages",
-			thumbnail: comics.thumbnail.path + "." + comics.thumbnail.extension,
+			thubnail: comics.thubnail.path + "." + comics.thubnail.extension,
 			language: comics.textObjects[0]?.language || "en-us",
 			price: comics.prices[0].price
 				? `${comics.prices[0].price}$ `
