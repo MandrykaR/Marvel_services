@@ -9,7 +9,7 @@ const useMarvelService = () => {
 
 	const getAllCharacters = async (offset = _baseOffset) => {
 		const res = await request(
-			`http://localhost:3001/chars`
+			`http://localhost:5175/chars`
 		);
 		return res;
 	};
