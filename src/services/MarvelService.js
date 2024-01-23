@@ -1,7 +1,7 @@
 import { useHttp } from "../hooks/http.hook";
 
 const useMarvelService = () => {
-	const { loading, request, error, clearError} = useHttp();
+	const { loading, request, error, clearError } = useHttp();
 
 	const _apiBase = "https://gateway.marvel.com:443/v1/public/";
 	const _apiKey = "apikey=882328e4822e076f9c7473a1cece504c";
@@ -9,12 +9,9 @@ const useMarvelService = () => {
 
 	const getAllCharacters = async (offset = _baseOffset) => {
 		const res = await request(
-			`http://localhost:5175/chars`
-			
+			`http://localhost:3001/chars`
 		);
-
 		return res;
-		
 	};
 
 	const addNewCharacter = async (name, description, image) => {
@@ -22,17 +19,15 @@ const useMarvelService = () => {
 			"name": name,
 			"description": description,
 			"img": image
-		  });
+		});
 		const res = await request(
 			`http://localhost:5175/chars`, "POST",
 			{
 				"name": name,
 				"description": description,
 				"img": image
-			  }
-
+			}
 		);
-
 		console.log(res);
 		return res;
 	}
@@ -50,7 +45,7 @@ const useMarvelService = () => {
 
 	const getAllComics = async (offset = 0) => {
 		const res = await request(`${_apiBase}comics?orderBy=-issueNumber&limit=8&offset=${offset}&${_apiKey}`)
-	
+
 		return res.data.results.map(_transformComics);
 	}
 
@@ -61,7 +56,7 @@ const useMarvelService = () => {
 			description: char.description
 				? `${char.description.slice(0, 210)}...`
 				: "There is no description for this character",
-			thubnail: char.thubnail.path + "." + char.thubnail.extension,
+			thumbnail: char.thumbnail.path + "." + char.thumbnail.extension,
 			homepage: char.urls[0].url,
 			wiki: char.urls[1].url,
 		};
@@ -76,13 +71,14 @@ const useMarvelService = () => {
 			pageCount: comics.pageCount
 				? `${comics.pageCount} p.`
 				: "No information about the number of pages",
-			thubnail: comics.thubnail.path + "." + comics.thubnail.extension,
+			thumbnail: comics.thumbnail.path + "." + comics.thumbnail.extension,
 			language: comics.textObjects[0]?.language || "en-us",
 			price: comics.prices[0].price
 				? `${comics.prices[0].price}$ `
 				: "not available",
 		};
 	};
+	
 
 	return {
 		loading,
