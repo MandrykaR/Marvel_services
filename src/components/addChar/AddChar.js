@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import useMarvelService from '../../services/MarvelService';
 import axios from 'axios';
 import './addChar.scss';
 
@@ -9,8 +8,6 @@ const AddChar = () => {
   const [name, setName] = useState('');
   const [desc, setDesc] = useState('');
   const [image, setImage] = useState('');
-
-  // const {addNewCharacter} = useMarvelService();
 
   const onAdd = (event) => {
 
@@ -25,7 +22,6 @@ const AddChar = () => {
       .catch(function (error) {
         console.log(error);
       });
-    console.log('wefwef');
     // addNewCharacter(name,desc,image).then(res => console.log(res)).catch(e => console.log(e))
   }
 

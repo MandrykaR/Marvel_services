@@ -28,7 +28,6 @@ const useMarvelService = () => {
 				"img": image
 			}
 		);
-		console.log(res);
 		return res;
 	}
 
